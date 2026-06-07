@@ -1,0 +1,9 @@
+/* frontend/src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #0a0a1a;
+}
