@@ -1,4 +1,12 @@
 // frontend/src/components/Controls.tsx
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface Props {
   paused: boolean;
@@ -20,40 +28,41 @@ export function Controls({
   onResetWindow,
 }: Props) {
   return (
-    <div className="controls-bar">
-      <div className="controls-group">
-        <button onClick={onTogglePause} className="ctrl-btn">
+    <div className="flex items-center gap-4 px-5 py-2 bg-bg-secondary border-b border-border shrink-0 flex-wrap">
+      <div className="flex items-center gap-1.5">
+        <Button variant="outline" size="sm" onClick={onTogglePause}>
           {paused ? "▶ Resume" : "⏸ Pause"}
-        </button>
-        <button onClick={onResetWindow} className="ctrl-btn" title="Reset to live following window">
+        </Button>
+        <Button variant="ghost" size="sm" onClick={onResetWindow} title="Reset to live following window">
           ⟲ Live
-        </button>
+        </Button>
       </div>
 
-      <div className="controls-group">
-        <label className="ctrl-label">
+      <div className="flex items-center gap-1.5">
+        <span className="text-[11px] text-text-muted flex items-center gap-1">
           Rate:
-          <select
-            value={emitRate}
-            onChange={(e) => onSetRate(Number(e.target.value))}
-            className="ctrl-select"
-          >
-            <option value={50}>50/s</option>
-            <option value={100}>100/s</option>
-            <option value={200}>200/s</option>
-            <option value={500}>500/s</option>
-            <option value={1000}>1000/s</option>
-          </select>
-        </label>
+          <Select value={String(emitRate)} onValueChange={(v) => onSetRate(Number(v))}>
+            <SelectTrigger className="h-7 text-[11px] w-20 font-mono">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="50" className="text-[11px] font-mono">50/s</SelectItem>
+              <SelectItem value="100" className="text-[11px] font-mono">100/s</SelectItem>
+              <SelectItem value="200" className="text-[11px] font-mono">200/s</SelectItem>
+              <SelectItem value="500" className="text-[11px] font-mono">500/s</SelectItem>
+              <SelectItem value="1000" className="text-[11px] font-mono">1000/s</SelectItem>
+            </SelectContent>
+          </Select>
+        </span>
       </div>
 
-      <div className="controls-group">
-        <button onClick={onInjectSpike} className="ctrl-btn warn">
+      <div className="flex items-center gap-1.5">
+        <Button variant="outline" size="sm" className="border-yellow/40 text-yellow hover:bg-yellow/10" onClick={onInjectSpike}>
           ⚡ Latency Spike
-        </button>
-        <button onClick={onInjectErrorBurst} className="ctrl-btn danger">
+        </Button>
+        <Button variant="outline" size="sm" className="border-red/40 text-red hover:bg-red/10" onClick={onInjectErrorBurst}>
           💥 Error Burst
-        </button>
+        </Button>
       </div>
     </div>
   );
