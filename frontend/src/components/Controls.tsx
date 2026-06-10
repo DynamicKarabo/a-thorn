@@ -42,7 +42,7 @@ export function Controls({
         <span className="text-[11px] text-text-muted flex items-center gap-1">
           Rate:
           <Select value={String(emitRate)} onValueChange={(v) => onSetRate(Number(v))}>
-            <SelectTrigger className="h-7 text-[11px] w-20 font-mono">
+            <SelectTrigger className="h-7 text-[11px] w-20 font-mono" aria-label="Emit rate">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

@@ -63,7 +63,7 @@ export function DrillDownPanel({ data }: Props) {
           <TableBody>
             {data.spans.map((sp) => (
               <TableRow
-                key={sp.traceId + sp.ts}
+                key={`${sp.traceId}-${sp.ts}`}
                 className={sp.status >= 500 ? "bg-red/5" : sp.status >= 400 ? "bg-yellow/5" : ""}
               >
                 <TableCell className="font-mono text-xs">{fmtTime(sp.ts)}</TableCell>
